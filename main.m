@@ -3,4 +3,8 @@
 full_path = fullfile(pathname, filename);
 
 %load data into matlab 
-readtable(full_path)
+data_set = readtable(full_path);
+
+model = cytokinemodel();
+
+disp(model)
