@@ -2,6 +2,7 @@
 conf = Config();
 params = CytokineParameter();
 
+%if there is real world data to import, import it
 if conf.realdata
     %select the data file using the standard windows file viewer
     [filename, pathname] = uigetfile('*.csv', 'Select dataset');
@@ -14,6 +15,20 @@ end
 %swap the values inserted into the params variable to a vector
 p0 = params.toVector();
 y0 = params.y0; %already inserted as a vector
+
+%check to see if user wants to calculate parameter sensitivity and if there is an available GPU
+if conf.sensitivity
+    if canUseGPU()
+        %fix for modern GPUs that aren't supported for MATLABs version of CUDA
+        %double check accuracy by comparing against a run with the CPU
+        parallel.gpu.enableCUDAForwardCompatibility(true);
+        y0 = gpuArray(y0);
+        p0 = gpuArray(p0);
+        disp('Running Sensitivity (and Solve) on GPU');
+    else
+        disp('Running Sensitivity (and Solve) on CPU')
+    end
+end
 
 %plot each value (using the in-person example)
 opts = odeset('RelTol',1e-6,'AbsTol', 1e-9);
