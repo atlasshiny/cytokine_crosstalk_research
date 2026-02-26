@@ -32,5 +32,16 @@ classdef CytokineParameter
                 obj.(fn{i}) = namedArgs.(fn{i});
             end
         end
+
+        function p = toVector(obj)
+            %Converts the earlier provided parameters to a column vector
+            arguments (Output)
+                p (1,14)    %column vector containing all parameters for the model
+            end
+
+            p = [obj.rI; obj.rC; obj.dI; obj.dC; obj.betaI; ...
+                 obj.betaC; obj.kIC; obj.dY; obj.alphaI; obj.D; ...
+                 obj.deltaC; obj.deltaI; obj.epsilonC; obj.epsilonI];
+        end
     end
 end
