@@ -14,29 +14,22 @@ end
 
 %turn the model parameters into a column vector `p_vec` and assign them to seperate, smaller variables
 %the reason for converting to a vector is for certain `ode` object methods
-if isa(p, 'CytokineParameter')
-    p_vec = p.toVector();
-elseif isa(p, 'double') && isvector(p)
-    p_vec = p;
-else
-    error('Input p must be a CytokineParameter object or a numeric vector.');
-end
 
 %mapping numeric indices back to meaningful parameter variable names
-rI       = p_vec(1);
-rC       = p_vec(2);
-dI       = p_vec(3);
-dC       = p_vec(4);
-betaI    = p_vec(5);
-betaC    = p_vec(6);
-kIC      = p_vec(7);
-dY       = p_vec(8);
-alphaI   = p_vec(9);
-D        = p_vec(10);
-deltaC   = p_vec(11);
-deltaI   = p_vec(12);
-epsilonC = p_vec(13);
-epsilonI = p_vec(14);
+rI       = p(1);
+rC       = p(2);
+dI       = p(3);
+dC       = p(4);
+betaI    = p(5);
+betaC    = p(6);
+kIC      = p(7);
+dY       = p(8);
+alphaI   = p(9);
+D        = p(10);
+deltaC   = p(11);
+deltaI   = p(12);
+epsilonC = p(13);
+epsilonI = p(14);
 
 
 %pull components of the vector y
