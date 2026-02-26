@@ -5,7 +5,7 @@ function dydt = cytokinemodel(~,y,p)
 arguments (Input)
     ~ %time (must be a scalar; if incorporating time: t (1,1) double)
     y (3,1) double %current cell/cytokine count at a given t-value (a column vector). If starting at t=0, this is the starting amount of cells/cytokines.
-    p (14,1) double %a column vector containing all parameters
+    p (1,14) double %a column vector containing all parameters
 end
 
 arguments (Output)
