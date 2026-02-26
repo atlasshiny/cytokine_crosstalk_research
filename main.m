@@ -25,7 +25,7 @@ title('Cancer-only ODE model: no drug vs drug');
 tspan = [0, 72]; %range of hours
 
 %create a ODE object that houses the equations for the mode
-f = ode(ODEFcn=@cytokinemodel, InitialValue=y0, Parameters=p0);
+f = ode(ODEFcn=@cytokinemodel, InitialValue=y0, Parameters=p0, Sensitivity=odeSensitivity());
 
 for D_value = [0,1]
     %update the drug parameter for no drug vs drug
